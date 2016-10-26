@@ -7,7 +7,7 @@ namespace AutoReplyAndForwarding
     {
         private string _PluginName = "AutoReplyAndForwarding";
         private string _DisplayPluginName = "Установка автоответа и пересылки";
-        private string _PluginDescription = "Данный плагин выполняет установку автоответа и пересылку писем в Exchange выбраному сотруднику";
+        private string _PluginDescription = "Данный плагин выполняет установку автоответа и пересылку писем в Exchange выбраному сотруднику.";
         private string _Author = "Krivorak V.A.";
         private string _Version = "1.3.0";
         private int _Number = 4;
