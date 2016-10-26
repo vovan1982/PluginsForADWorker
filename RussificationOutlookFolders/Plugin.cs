@@ -7,7 +7,7 @@ namespace RussificationOutlookFolders
     {
         private string _PluginName = "RussificationOutlookFolders";
         private string _DisplayPluginName = "Руссификация папок Outlook";
-        private string _PluginDescription = "Данный плагин выполняет руссификацию папок Outlook сотрудника";
+        private string _PluginDescription = "Данный плагин выполняет руссификацию папок Outlook указанного сотрудника";
         private string _Author = "Krivorak V.A.";
         private string _Version = "1.1.0";
         private int _Number = 6;
