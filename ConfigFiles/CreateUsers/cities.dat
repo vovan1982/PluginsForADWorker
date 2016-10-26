@@ -1,0 +1,59 @@
+Москва Южный Порт 16;Москва;2-ой Южнопортовый проезд д.16 стр.1;AL-BUILDING16
+Москва Южный Порт 18;Москва;2-ой Южнопортовый проезд д.18;
+Москва Южный Порт 27;Москва;2-ой Южнопортовый проезд д.27А, стр.1;AL-BUILDING27
+Москва Волконка;Москва;2-ой Волоконский пер. д.10;
+Архангельск;Архангельск;пл. В.И.Ленина, д.4 оф.403;AUTOLEASING-REGION-ARH
+Астрахань;Астрахань;ул. Победы д.41;AUTOLEASING-REGION-ASTR
+Барнаул;Барнаул;пр-т Ленина, д. 22, оф. 505, 506;AUTOLEASING-REGION-BRL
+Белгород;Белгород;ул. Свято-Троицкий б-р., д.17;AUTOLEASING-REGION-BGD
+Брянск;Брянск;ул. Бежицкая д.1 к.4;AUTOLEASING-REGION-BRN
+Владимир;Владимир;ул. Северная, д. 112;AUTOLEASING-REGION-VLD
+Волгоград;Волгоград;ул. Канунникова, д.23;AUTOLEASING-REGION-VOL
+Вологда;Вологда;ул. Челюскинцев, д.32;AUTOLEASING-REGION-VLGD
+Воронеж;Воронеж;Московский пр-т д.4, оф.508;AUTOLEASING-REGION-VRN
+Екатеринбург;Екатеринбург;ул. Малышева, д.51, офис 15/06;AUTOLEASING-REGION-EKB
+Иваново;Иваново;ул. Ленина д.2А,оф. 3,4;AUTOLEASING-REGION-IVN
+Ижевск;Ижевск;ул. Карла-Маркса, д. 218, оф.15, оф. 611;AUTOLEASING-REGION-IZH
+Йошкар-Ола;Йошкар-Ола;Ленинский пр-т, д. 24г;AUTOLEASING-REGION-YOSH
+Иркутск;Иркутск;ул. Фридриха Энгельса, д. 17;AUTOLEASING-REGION-IRK
+Казань;Казань;ул. Калинина, д. 62;AUTOLEASING-REGION-KZN
+Калуга;Калуга;ул.Фридриха Энгельса, д.143;AUTOLEASING-REGION-KLG
+Кемерово;Кемерово;пр. Советский, 2/16;AUTOLEASING-REGION-KMR
+Краснодар;Краснодар;ул. Московская, дом 59/1;AUTOLEASING-REGION-KRD
+Красноярск;Красноярск;ул. Взлетная, дом 57;AUTOLEASING-REGION-KRS
+Курган;Курган;;AUTOLEASING-REGION-KGN
+Курск;Курск;ул. Радищева, д. 24;AUTOLEASING-REGION-KUR
+Липецк;Липецк;пр-кт Победы, д. 29;AUTOLEASING-REGION-LPC
+Магнитогорск;Магнитогорск;Комсомольская, д.29;AUTOLEASING-REGION-MGN
+Набережные Челны;Набережные Челны;пр-т Мира, д.24Ж;AUTOLEASING-REGION-NCH
+Нижний Новгород;Нижний Новгород;ул. Пискунова, д.29;AUTOLEASING-REGION-NN
+Новокузнецк;Новокузнецк;ул. Сеченова, д.28а;AUTOLEASING-REGION-NVK
+Новороссийск;Новороссийск;ул. Леднева , д.5;AUTOLEASING-REGION-NVR
+Новосибирск;Новосибирск;ул. Орджоникидзе, д.38;AUTOLEASING-REGION-NVB
+Омск;Омск;ул.Фрунзе, 1 к.4;AUTOLEASING-REGION-OMSK
+Орёл;Орёл;ул.Красноармейская, дом 1А;AUTOLEASING-REGION-ORL
+Оренбург;Оренбург;пр. Дзержинского, 2/2;AUTOLEASING-REGION-ORG
+Пенза;Пенза;ул.Московская, д.73, оф. 21;AUTOLEASING-REGION-PNZ
+Пермь;Пермь;ул. 25 Октября, д. 101;AUTOLEASING-REGION-PRM
+Петрозаводск;Петрозаводск;ул. Зайцева 67а;AUTOLEASING-REGION-PTK
+Пятигорск;Пятигорск;;AUTOLEASING-REGION-PTG
+Ростов-на-Дону;Ростов;Ворошиловский пр-т, д. 62;AUTOLEASING-REGION-RND
+Рязань;Рязань;ул. Право-Лыбедская, д. 35, корп.2;AUTOLEASING-REGION-RZN
+Самара;Самара;Московское шоссе, д 41;AUTOLEASING-REGION-SMR
+Санкт-Петербург;Санкт-Петербург;пл. Карла Фаберже, д.8, лит. Б оф. 410;AUTOLEASING-REGION-SPB
+Саратов;Саратов;ул. Зарубина д.143/147;AUTOLEASING-REGION-SRT
+Смоленск;Смоленск;пр-т Гагарина д.14/2;AUTOLEASING-REGION-SML
+Сочи;Сочи;ул.Кубанская д.15;AUTOLEASING-REGION-SCH
+Ставрополь;Ставрополь;ул. Доваторцев д.38 А, оф. 606;AUTOLEASING-REGION-STL
+Сургут;Сургут;ул. Быстринская д.8, офис 1;AUTOLEASING-REGION-SRG
+Тамбов;Тамбов;ул. Красная, д. 12;AUTOLEASING-REGION-TBV
+Тверь;Тверь;пр-т Чайковского, д. 6/1;AUTOLEASING-REGION-TVR
+Тольятти;Тольятти;ул. Фрунзе, д. 8;AUTOLEASING-REGION-TLT
+Томск;Томск;ул. Гагарина,7;AUTOLEASING-REGION-TOMSK
+Тула;Тула;ул. Болдина, д.45;AUTOLEASING-REGION-TUL
+Тюмень;Тюмень;ул. Республики, д.59;AUTOLEASING-REGION-TMN
+Ульяновск;Ульяновск;2-й Переулок Мира д.24;AUTOLEASING-REGION-ULN
+Уфа;Уфа;Пархоменко, 156/3, оф. 504;AUTOLEASING-REGION-UFA
+Чебоксары;Чебоксары;Ул. Гагарина д.55;AUTOLEASING-REGION-CHBK
+Челябинск;Челябинск;ул. Ворошилова, д.35, оф.5.7;AUTOLEASING-REGION-CHEL
+Ярославль;Ярославль;ул.Володарского, д.1а;AUTOLEASING-REGION-YAR
