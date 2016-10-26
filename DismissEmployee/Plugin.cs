@@ -7,7 +7,7 @@ namespace DismissEmployee
     {
         private string _PluginName = "DismissEmployee";
         private string _DisplayPluginName = "Уволить сотрудника";
-        private string _PluginDescription = "Данный плагин выполняет все действия с АД и Exchange при увольнении сотрудника";
+        private string _PluginDescription = "Данный плагин выполняет все действия с АД и Exchange при увольнении сотрудника.";
         private string _Author = "Krivorak V.A.";
         private string _Version = "1.2.0";
         private int _Number = 1;
