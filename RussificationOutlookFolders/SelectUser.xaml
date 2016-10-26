@@ -1,0 +1,109 @@
+﻿<Window x:Class="RussificationOutlookFolders.SelectUser"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Converters="clr-namespace:RussificationOutlookFolders.Converters"
+        xmlns:Providers="clr-namespace:RussificationOutlookFolders.DataProvider"
+        xmlns:UISearchTextBox="clr-namespace:RussificationOutlookFolders.UISearchTextBox"
+        xmlns:UIWatermarkedTextBox="clr-namespace:RussificationOutlookFolders.UIWatermarkedTextBox"
+        Title="Выбор пользователя"
+        Width="571"
+        Height="325"
+        Background="#FFC1C1C1"
+        KeyDown="Window_KeyDown"
+        WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/RussificationOutlookFolders;component/Dictionary.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <ObjectDataProvider x:Key="AsyncDataSource"
+                                IsAsynchronous="True"
+                                MethodName="GetItems"
+                                ObjectType="Providers:AsyncDataProvider" />
+            <Converters:NullToBooleanConverter x:Key="NullToBooleanConverter" />
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <GroupBox Margin="0,0,0,38"
+                  BorderBrush="Black"
+                  Header="Поиск пользователя">
+            <Grid Margin="0,0,-2,-12">
+                <UISearchTextBox:SearchTextBox x:Name="Search"
+                                               Height="25"
+                                               Margin="10,10,10,0"
+                                               VerticalAlignment="Top"
+                                               LabelText="Поиск пользователя"
+                                               TextWrapping="Wrap" />
+                <UIWatermarkedTextBox:WatermarkedTextBox x:Name="Filter"
+                                                         Height="25"
+                                                         Margin="10,40,10,0"
+                                                         VerticalAlignment="Top"
+                                                         TextChanged="Filter_TextChanged"
+                                                         TextWrapping="Wrap"
+                                                         WatermarkText="Фильтр по полю &quot;Имя пользователя в АД&quot;:" />
+                <ListView x:Name="ListUsersForSelected" Margin="10,70,10,18">
+                    <ListView.Resources>
+                        <Style TargetType="{x:Type ListViewItem}">
+                            <EventSetter Event="MouseDoubleClick" Handler="ListUsersForSelectedItem_MouseDoubleClick" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding AccountIsDisable}" Value="True">
+                                    <Setter Property="Foreground" Value="Red" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListView.Resources>
+                    <ListView.ItemsSource>
+                        <Binding IsAsync="True" Source="{StaticResource AsyncDataSource}" />
+                    </ListView.ItemsSource>
+                    <ListView.Style>
+                        <Style TargetType="{x:Type ListView}">
+                            <Style.Triggers>
+                                <Trigger Property="ItemsSource" Value="{x:Null}">
+                                    <Setter Property="Template" Value="{StaticResource WaitControlTemplate}" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListView.Style>
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn DisplayMemberBinding="{Binding NameInAD}" Header="Имя пользователя в АД" />
+                            <GridViewColumn DisplayMemberBinding="{Binding Post}" Header="Должность" />
+                            <GridViewColumn DisplayMemberBinding="{Binding PhoneInt}" Header="Внутр. тел." />
+                            <GridViewColumn DisplayMemberBinding="{Binding Mail}" Header="EMail" />
+                            <GridViewColumn DisplayMemberBinding="{Binding Login}" Header="Логин" />
+                            <GridViewColumn DisplayMemberBinding="{Binding DisplayName}" Header="Отображаемое имя" />
+                            <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Имя" />
+                            <GridViewColumn DisplayMemberBinding="{Binding Surname}" Header="Фамилия" />
+                            <GridViewColumn DisplayMemberBinding="{Binding Organization}" Header="Организация" />
+                            <GridViewColumn DisplayMemberBinding="{Binding Department}" Header="Отдел" />
+                            <GridViewColumn DisplayMemberBinding="{Binding Adress}" Header="Адрес" />
+                            <GridViewColumn DisplayMemberBinding="{Binding City}" Header="Город" />
+                            <GridViewColumn DisplayMemberBinding="{Binding PhoneMob}" Header="Тел. моб." />
+                            <GridViewColumn DisplayMemberBinding="{Binding PlaceInAD}" Header="Расположение в домене" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+        </GroupBox>
+        <Button x:Name="btSelectUser"
+                Width="100"
+                Height="23"
+                Margin="0,0,10,10"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Click="btSelectUser_Click"
+                IsEnabled="{Binding ElementName=ListUsersForSelected,
+                                    Path=SelectedItem,
+                                    Mode=OneWay,
+                                    UpdateSourceTrigger=PropertyChanged,
+                                    Converter={StaticResource NullToBooleanConverter}}">
+            <StackPanel Orientation="Horizontal">
+                <Image Width="16"
+                       Height="16"
+                       Margin="0,0,5,0"
+                       Source="Resources/select.ico" />
+                <TextBlock Text="Выбрать" />
+            </StackPanel>
+        </Button>
+    </Grid>
+</Window>

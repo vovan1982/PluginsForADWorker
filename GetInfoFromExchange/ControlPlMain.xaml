@@ -1,0 +1,326 @@
+﻿<UserControl x:Class="GetInfoFromExchange.ControlPlMain"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             Background="#FFA4A4A4"
+             d:DesignHeight="763"
+             d:DesignWidth="775"
+             mc:Ignorable="d">
+    <Grid>
+        <Label x:Name="lbVersion"
+               Margin="10,0"
+               VerticalAlignment="Top"
+               HorizontalContentAlignment="Right"
+               Content="Версия плагина:" />
+        <GroupBox Height="80"
+                  Margin="0,26,0,0"
+                  VerticalAlignment="Top"
+                  BorderBrush="Black"
+                  Header="Параметры">
+            <Grid Margin="0,0,-2,-12">
+                <Label Margin="0,0,10,0"
+                       VerticalAlignment="Top"
+                       Content="Выберите сотрудника:" />
+                <TextBox x:Name="loginUser"
+                         Height="23"
+                         Margin="10,26,85,0"
+                         VerticalAlignment="Top"
+                         IsReadOnlyCaretVisible="True"
+                         KeyDown="loginUser_KeyDown"
+                         TextChanged="loginUser_TextChanged" />
+                <Button x:Name="btSelectUser"
+                        Width="75"
+                        Height="23"
+                        Margin="0,26,10,0"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Click="btSelectUser_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Width="16"
+                               Height="16"
+                               Margin="0,0,5,0"
+                               Source="/GetInfoFromExchange;component/Resources/select.ico" />
+                        <TextBlock Text="Выбрать" />
+                    </StackPanel>
+                </Button>
+            </Grid>
+        </GroupBox>
+        <Button x:Name="btShowErrors"
+                Width="150"
+                Margin="0,111,285,0"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Click="btShowErrors_Click"
+                IsEnabled="False">
+            <StackPanel Orientation="Horizontal">
+                <Image Width="16"
+                       Height="16"
+                       Margin="0,0,5,0"
+                       Source="/GetInfoFromExchange;component/Resources/error.ico" />
+                <TextBlock Text="Ошибки загрузки" />
+            </StackPanel>
+        </Button>
+        <Button x:Name="btLoadInfo"
+                Width="270"
+                Margin="0,111,10,0"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Click="btLoadInfo_Click">
+            <StackPanel Orientation="Horizontal">
+                <Image Width="16"
+                       Height="16"
+                       Margin="0,0,5,0"
+                       Source="/GetInfoFromExchange;component/Resources/loadData.ico" />
+                <TextBlock Text="Загрузить информацию из Exchange" />
+            </StackPanel>
+        </Button>
+        <ScrollViewer Margin="0,138,0,35">
+            <Border BorderBrush="Black" BorderThickness="1">
+                <Grid>
+                    <GroupBox Height="233"
+                              Margin="10,25.96,10,0"
+                              VerticalAlignment="Top"
+                              BorderBrush="Black"
+                              FontWeight="Bold"
+                              Header="Функции почтового ящика">
+                        <Grid Margin="0,0,0,-12.96">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <GroupBox Height="96"
+                                      Margin="10,0"
+                                      VerticalAlignment="Top"
+                                      FontWeight="Bold"
+                                      Header="ActiveSync">
+                                <Grid Margin="0,0,-2,-12.96">
+                                    <Label Margin="10,10,0,0"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Top"
+                                           Content="Состояние:" />
+                                    <TextBox x:Name="activeSyncState"
+                                             Height="25.96"
+                                             Margin="89.817,10,10,0"
+                                             VerticalAlignment="Top"
+                                             IsReadOnly="True" />
+                                    <Label Width="74.817"
+                                           Margin="10,40.96,0,0"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Top"
+                                           HorizontalContentAlignment="Right"
+                                           Content="Политика:" />
+                                    <TextBox x:Name="activeSyncPolicy"
+                                             Height="25.96"
+                                             Margin="89.817,40.96,10,0"
+                                             VerticalAlignment="Top"
+                                             IsReadOnly="True"
+                                             TextWrapping="Wrap" />
+                                </Grid>
+                            </GroupBox>
+                            <GroupBox Grid.ColumnSpan="2"
+                                      Height="100"
+                                      Margin="10,101,10,0"
+                                      VerticalAlignment="Top"
+                                      FontWeight="Bold"
+                                      Header="Протоколы">
+                                <Grid Margin="0,0,-2,-12.96">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBox x:Name="mapiState"
+                                             Grid.ColumnSpan="2"
+                                             Height="27"
+                                             Margin="85,10,10,0"
+                                             VerticalAlignment="Top"
+                                             IsReadOnly="True"
+                                             TextWrapping="Wrap" />
+                                    <Label Width="80"
+                                           Height="27"
+                                           Margin="0,10,0,0"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Top"
+                                           HorizontalContentAlignment="Right"
+                                           Content="MAPI:"
+                                           FontWeight="Bold" />
+                                    <TextBox x:Name="imapState"
+                                             Grid.Column="1"
+                                             Grid.ColumnSpan="2"
+                                             Height="27"
+                                             Margin="111,42,10,0"
+                                             VerticalAlignment="Top"
+                                             IsReadOnly="True"
+                                             TextWrapping="Wrap" />
+                                    <Label Grid.Column="1"
+                                           Width="96"
+                                           Height="27"
+                                           Margin="10,42,0,0"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Top"
+                                           HorizontalContentAlignment="Right"
+                                           Content="IMAP4:"
+                                           FontWeight="Bold" />
+                                    <TextBox x:Name="popState"
+                                             Grid.Column="2"
+                                             Grid.ColumnSpan="2"
+                                             Height="27"
+                                             Margin="95,10,10,0"
+                                             VerticalAlignment="Top"
+                                             IsReadOnly="True"
+                                             TextWrapping="Wrap" />
+                                    <Label Grid.Column="2"
+                                           Grid.ColumnSpan="2"
+                                           Width="80"
+                                           Height="27"
+                                           Margin="10,10,0,0"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Top"
+                                           HorizontalContentAlignment="Right"
+                                           Content="POP3:"
+                                           FontWeight="Bold" />
+                                </Grid>
+                            </GroupBox>
+                            <GroupBox Grid.Column="1"
+                                      Height="96"
+                                      Margin="10,0"
+                                      VerticalAlignment="Top"
+                                      FontWeight="Bold"
+                                      Header="WebAPP">
+                                <Grid Margin="0,0,-2,-12.96">
+                                    <Label Margin="10,10,0,0"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Top"
+                                           Content="Состояние:" />
+                                    <TextBox x:Name="webAppState"
+                                             Height="25.96"
+                                             Margin="89.817,10,10,0"
+                                             VerticalAlignment="Top"
+                                             IsReadOnly="True"
+                                             TextWrapping="Wrap" />
+                                    <Label Width="74.817"
+                                           Margin="10,40.96,0,0"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Top"
+                                           HorizontalContentAlignment="Right"
+                                           Content="Политика:" />
+                                    <TextBox x:Name="webAppPolicy"
+                                             Height="25.96"
+                                             Margin="89.817,40.96,10,0"
+                                             VerticalAlignment="Top"
+                                             IsReadOnly="True"
+                                             TextWrapping="Wrap" />
+                                </Grid>
+                            </GroupBox>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Height="95"
+                              Margin="10,258.96,10,0"
+                              VerticalAlignment="Top"
+                              BorderBrush="Black"
+                              FontWeight="Bold"
+                              Header="Переадресация">
+                        <Grid Margin="0,0,0,-12.96">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Label Margin="10,10,10,0"
+                                   VerticalAlignment="Top"
+                                   Content="ForwardingAddress:" />
+                            <TextBox x:Name="forwardingAddress"
+                                     Height="23"
+                                     Margin="10,40.96,10,0"
+                                     VerticalAlignment="Top"
+                                     IsReadOnly="True"
+                                     IsReadOnlyCaretVisible="True"
+                                     TextWrapping="Wrap" />
+                            <Label Grid.Column="1"
+                                   Margin="10,10,10,0"
+                                   VerticalAlignment="Top"
+                                   Content="ForwardingSmtpAddress:" />
+                            <TextBox x:Name="forwardingSmtpAddress"
+                                     Grid.Column="1"
+                                     Height="23"
+                                     Margin="10,40.96,10,0"
+                                     VerticalAlignment="Top"
+                                     IsReadOnly="True"
+                                     IsReadOnlyCaretVisible="True"
+                                     TextWrapping="Wrap" />
+                        </Grid>
+                    </GroupBox>
+                    <Label x:Name="titleText"
+                           Margin="10,0,0,0"
+                           VerticalAlignment="Top"
+                           HorizontalContentAlignment="Center"
+                           Content="Информация по сотруднику"
+                           FontWeight="Bold" />
+                    <Button x:Name="btInboxMessageRule"
+                            Height="25"
+                            Margin="10,478.96,10,0"
+                            VerticalAlignment="Top"
+                            Click="btInboxMessageRule_Click"
+                            IsEnabled="False">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Width="16"
+                                   Height="16"
+                                   Margin="0,0,5,0"
+                                   Source="/GetInfoFromExchange;component/Resources/inboxRule.ico" />
+                            <TextBlock Text="Просмотреть правила входящих сообщений сотрудника" />
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="btAutoReplyInfo"
+                            Height="25"
+                            Margin="10,508.96,10,0"
+                            VerticalAlignment="Top"
+                            Click="btAutoReplyInfo_Click"
+                            IsEnabled="False">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Width="16"
+                                   Height="16"
+                                   Margin="0,0,5,0"
+                                   Source="/GetInfoFromExchange;component/Resources/mail_reply.ico" />
+                            <TextBlock Text="Информация по установленному автоответу у сотрудника" />
+                        </StackPanel>
+                    </Button>
+                    <GroupBox Height="115"
+                              Margin="10,358.96,10,0"
+                              VerticalAlignment="Top"
+                              BorderBrush="Black"
+                              FontWeight="Bold"
+                              Header="Эл.Адреса сотрудника">
+                        <Grid Margin="0,0,0,-12.96">
+                            <ScrollViewer Margin="0,0,0,10">
+                                <TextBox x:Name="emailAddress"
+                                         IsReadOnly="True"
+                                         IsReadOnlyCaretVisible="True"
+                                         TextWrapping="Wrap" />
+                            </ScrollViewer>
+                        </Grid>
+                    </GroupBox>
+                    <Button x:Name="btMobileDeviceInfo"
+                            Height="25"
+                            Margin="10,538.96,10,0"
+                            VerticalAlignment="Top"
+                            Click="btMobileDeviceInfo_Click"
+                            IsEnabled="False">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Width="16"
+                                   Height="16"
+                                   Margin="0,0,5,0"
+                                   Source="/GetInfoFromExchange;component/Resources/mobileDevice.ico" />
+                            <TextBlock Text="Информация о мобильных устройствах сотрудника" />
+                        </StackPanel>
+                    </Button>
+                </Grid>
+            </Border>
+        </ScrollViewer>
+        <StatusBar Height="35" VerticalAlignment="Bottom">
+            <Label x:Name="statusBarText"
+                   Width="765"
+                   Content="" />
+        </StatusBar>
+    </Grid>
+</UserControl>

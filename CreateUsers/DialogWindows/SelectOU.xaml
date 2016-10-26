@@ -1,0 +1,103 @@
+﻿<Window x:Class="CreateUsers.DialogWindows.SelectOU"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Converters="clr-namespace:CreateUsers.Converters"
+        xmlns:Providers="clr-namespace:CreateUsers.DataProvider"
+        xmlns:self="clr-namespace:CreateUsers.Model"
+        Title="Выбор расположения пользователя в домене"
+        Width="419"
+        Height="511"
+        Background="#FFC1C1C1"
+        KeyDown="Window_KeyDown"
+        WindowStartupLocation="CenterOwner">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/CreateUsers;component/Dictionary.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <ObjectDataProvider x:Key="AsyncDataSource"
+                                IsAsynchronous="True"
+                                MethodName="GetDomainOUTree"
+                                ObjectType="Providers:AsyncDataProvider" />
+            <Converters:NullToBooleanConverter x:Key="NullToBooleanConverter" />
+            <Converters:PathToImageSourceConverter x:Key="PathToImageSourceConverter" />
+            <Converters:TreeSortConverter x:Key="TreeSortConverter" />
+            <Converters:SelectOUTreeBtEnableConverter x:Key="SelectOUTreeBtEnableConverter" />
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <TreeView x:Name="DomainOUTreeView"
+                  Margin="0,0,0,37"
+                  ItemsSource="{Binding Source={StaticResource AsyncDataSource},
+                                        IsAsync=True}">
+            <TreeView.Resources>
+                <Style BasedOn="{StaticResource {x:Type TreeViewItem}}" TargetType="{x:Type TreeViewItem}">
+                    <EventSetter Event="KeyDown" Handler="DomainOUTreeViewItem_KeyDown" />
+                    <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
+                    <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
+                </Style>
+                <HierarchicalDataTemplate DataType="{x:Type self:DomainTreeItem}" ItemsSource="{Binding Childs, Converter={StaticResource TreeSortConverter}, ConverterParameter=Title}">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Width="16"
+                               Height="16"
+                               Source="{Binding Image,
+                                                Converter={StaticResource PathToImageSourceConverter}}" />
+                        <TextBlock Text="{Binding Title}" />
+                        <TextBlock Margin="20,0,0,0" Text="{Binding City}" />
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+            </TreeView.Resources>
+
+            <TreeView.Style>
+                <Style TargetType="{x:Type TreeView}">
+                    <Style.Triggers>
+                        <Trigger Property="ItemsSource" Value="{x:Null}">
+                            <Setter Property="Template" Value="{StaticResource LoadControlTemplate}" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </TreeView.Style>
+        </TreeView>
+
+        <Button x:Name="btSelect"
+                Width="110"
+                Height="22"
+                Margin="0,0,115,10"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Click="btSelect_Click"
+                IsEnabled="{Binding ElementName=DomainOUTreeView,
+                                    Path=SelectedItem.Description,
+                                    Mode=OneWay,
+                                    UpdateSourceTrigger=PropertyChanged,
+                                    Converter={StaticResource SelectOUTreeBtEnableConverter}}">
+            <Button.Content>
+                <StackPanel Orientation="Horizontal">
+                    <Image x:Name="btSelect_image"
+                           Width="16"
+                           Height="16"
+                           Margin="0,0,5,0"
+                           Source="/CreateUsers;component/Resources/select.ico" />
+                    <TextBlock x:Name="btSelect_text" Text="Выбрать" />
+                </StackPanel>
+            </Button.Content>
+        </Button>
+        <Button x:Name="btCancel"
+                Width="100"
+                Height="22"
+                Margin="0,0,10,10"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Click="btCancel_Click">
+            <Button.Content>
+                <StackPanel Orientation="Horizontal">
+                    <Image Width="16"
+                           Height="16"
+                           Margin="0,0,5,0"
+                           Source="/CreateUsers;component/Resources/cancel.ico" />
+                    <TextBlock Text="Отмена" />
+                </StackPanel>
+            </Button.Content>
+        </Button>
+    </Grid>
+</Window>

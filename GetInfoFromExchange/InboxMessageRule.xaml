@@ -1,0 +1,66 @@
+﻿<Window x:Class="GetInfoFromExchange.InboxMessageRule"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Правила входящих сообщений"
+        Width="560"
+        Height="560"
+        MinWidth="525"
+        MinHeight="500"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Label HorizontalAlignment="Center"
+               VerticalAlignment="Top"
+               Content="Правила входящих сообщений"
+               FontSize="18.667"
+               FontWeight="Bold" />
+        <Border Margin="5,34.83,5,36.96"
+                BorderBrush="Black"
+                BorderThickness="1">
+            <ScrollViewer Margin="1">
+                <StackPanel x:Name="rootStackPanel" />
+            </ScrollViewer>
+        </Border>
+        <Button Width="75"
+                Height="21.96"
+                Margin="0,0,10,10"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Click="Button_Click">
+            <StackPanel Orientation="Horizontal">
+                <Image Width="16"
+                       Height="16"
+                       Margin="0,0,5,0"
+                       Source="/GetInfoFromExchange;component/Resources/cancel.ico" />
+                <TextBlock Text="Закрыть" />
+            </StackPanel>
+        </Button>
+        <Button x:Name="btExpandAll"
+                Width="130"
+                Margin="10,0,0,10"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                Click="btExpandAll_Click">
+            <StackPanel Orientation="Horizontal">
+                <Image Width="16"
+                       Height="16"
+                       Margin="0,0,5,0"
+                       Source="/GetInfoFromExchange;component/Resources/expand.ico" />
+                <TextBlock Text="Развернуть все" />
+            </StackPanel>
+        </Button>
+        <Button x:Name="btCollapseAll"
+                Width="130"
+                Margin="145,0,0,10"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                Click="btCollapseAll_Click">
+            <StackPanel Orientation="Horizontal">
+                <Image Width="16"
+                       Height="16"
+                       Margin="0,0,5,0"
+                       Source="/GetInfoFromExchange;component/Resources/collapse.ico" />
+                <TextBlock Text="Свернуть все" />
+            </StackPanel>
+        </Button>
+    </Grid>
+</Window>

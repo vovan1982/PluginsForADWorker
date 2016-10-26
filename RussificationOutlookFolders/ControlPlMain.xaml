@@ -1,0 +1,89 @@
+﻿<UserControl x:Class="RussificationOutlookFolders.ControlPlMain"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             Background="#FFA4A4A4"
+             d:DesignHeight="383"
+             d:DesignWidth="408"
+             mc:Ignorable="d">
+    <Grid Margin="10">
+        <GroupBox Height="80"
+                  Margin="0,26,0,0"
+                  VerticalAlignment="Top"
+                  BorderBrush="Black"
+                  Header="Параметры">
+            <Grid Margin="0,0,-12,-12">
+                <Label Margin="0,0,10,0"
+                       VerticalAlignment="Top"
+                       Content="Выберите сотрудника:" />
+                <TextBox x:Name="dnUserForChange"
+                         Height="23"
+                         Margin="0,26,85,0"
+                         VerticalAlignment="Top"
+                         IsReadOnlyCaretVisible="True"
+                         KeyDown="dnUserForChange_KeyDown"
+                         TextChanged="dnUserForChange_TextChanged" />
+                <Button x:Name="btSelectUser"
+                        Width="75"
+                        Height="23"
+                        Margin="0,26,10,0"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Click="btSelectUser_Click">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Width="16"
+                                   Height="16"
+                                   Margin="0,0,5,0"
+                                   Source="/RussificationOutlookFolders;component/Resources/select.ico" />
+                            <TextBlock Text="Выбрать" />
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+            </Grid>
+        </GroupBox>
+        <GroupBox Margin="0,133,0,0" Header="Процесс выполнения">
+            <Grid Margin="0,0,-2,-12">
+                <ListBox x:Name="log" Margin="0,0,0,10">
+                    <ListBox.Resources>
+                        <Style TargetType="{x:Type ListBoxItem}">
+                            <EventSetter Event="MouseDoubleClick" Handler="logItem_MouseDoubleClick" />
+                        </Style>
+                    </ListBox.Resources>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Grid.Column="0"
+                                       Width="16"
+                                       Height="16"
+                                       Source="{Binding Path=Image}" />
+                                <TextBlock Grid.Column="1" Text="{Binding Path=Text}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ListBox>
+            </Grid>
+        </GroupBox>
+        <Button x:Name="btRussificationFolder"
+                Width="150"
+                Margin="0,111,0,0"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Click="btRussificationFolder_Click">
+            <Button.Content>
+                <StackPanel Orientation="Horizontal">
+                    <Image Width="16"
+                           Height="16"
+                           Margin="0,0,5,0"
+                           Source="/RussificationOutlookFolders;component/Resources/russian_federation.ico" />
+                    <TextBlock Text="Руссифицировать" />
+                </StackPanel>
+            </Button.Content>
+        </Button>
+        <Label x:Name="lbVersion"
+               VerticalAlignment="Top"
+               HorizontalContentAlignment="Right"
+               Content="Версия плагина:" />
+    </Grid>
+</UserControl>
