@@ -7,7 +7,7 @@ namespace GetInfoFromExchange
     {
         private string _PluginName = "GetInfoFromExchange";
         private string _DisplayPluginName = "Информация из Exchange";
-        private string _PluginDescription = "Данный плагин выбирает информацию по указанному сотруднику из Exchange";
+        private string _PluginDescription = "Данный плагин выбирает информацию по указанному сотруднику из Exchange.";
         private string _Author = "Krivorak V.A.";
         private string _Version = "1.1.0";
         private int _Number = 5;
