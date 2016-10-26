@@ -7,7 +7,7 @@ namespace CreateUsers
     {
         private string _PluginName = "CreateUsers";
         private string _DisplayPluginName = "Создание учетной записи сотрудника";
-        private string _PluginDescription = "Данный плагин выполняет создание учетной записи сотрудника в АД, Exchange и Lync";
+        private string _PluginDescription = "Данный плагин выполняет создание учетной записи сотрудника в АД, Exchange и Lync.";
         private string _Author = "Krivorak V.A.";
         private string _Version = "1.0.7";
         private int _Number = 2;
