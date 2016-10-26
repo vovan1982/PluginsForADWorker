@@ -7,7 +7,7 @@ namespace ChangeSurname
     {
         private string _PluginName = "ChangeSurname";
         private string _DisplayPluginName = "Изменить фамилию сотрудника";
-        private string _PluginDescription = "Данный плагин выполняет все действия с АД, Exchange и Lync при изменении фамилии сотрудника";
+        private string _PluginDescription = "Данный плагин выполняет все действия с АД, Exchange и Lync при изменении фамилии сотрудника.";
         private string _Author = "Krivorak V.A.";
         private string _Version = "1.2.0";
         private int _Number = 3;
