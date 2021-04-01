@@ -69,7 +69,7 @@ namespace LoadPluginTest
         private List<PluginData> _plugins;
         private string _login = "";
         private string _pass = "";
-        private string _domain = "VL";
+        private string _domain = "";
         private DirectoryEntry _connectedSession;
         private PrincipalContext _principalContext;
 
@@ -87,7 +87,7 @@ namespace LoadPluginTest
                 startTabLable.Content = exp.Message;
                 return;
             }
-            _plugins = LoadPlugins(@"C:\Users\Vladimir.Krivorak\Documents\Visual Studio 2013\Projects\PluginsForADWorker\CreateUsers\bin\Debug", _domain + @"\" + _login, _pass, _connectedSession, _principalContext);
+            _plugins = LoadPlugins(@"D:\Programming\PluginsForADWorker\CreateUsers\bin\Debug", _domain + @"\" + _login, _pass, _connectedSession, _principalContext);
             AddPluginToForm(tabControl,_plugins);
         }
         // Загрузка плагинов из указанной дирректории

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30523.141
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChangeSurname", "ChangeSurname\ChangeSurname.csproj", "{54D62C40-398F-456A-877C-2111B9428E35}"
 EndProject
@@ -16,6 +16,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RussificationOutlookFolders", "RussificationOutlookFolders\RussificationOutlookFolders.csproj", "{3988A740-248E-45C8-8AC0-0006ED2FBEB7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreateUsers", "CreateUsers\CreateUsers.csproj", "{A525A66D-6356-40EF-A97F-3FE165482AF1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreateUsersPPK", "CreateUsersPPK\CreateUsersPPK.csproj", "{82C11E45-789D-404A-AFF5-34829152BAB2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,8 +53,15 @@ Global
 		{A525A66D-6356-40EF-A97F-3FE165482AF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A525A66D-6356-40EF-A97F-3FE165482AF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A525A66D-6356-40EF-A97F-3FE165482AF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82C11E45-789D-404A-AFF5-34829152BAB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82C11E45-789D-404A-AFF5-34829152BAB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82C11E45-789D-404A-AFF5-34829152BAB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82C11E45-789D-404A-AFF5-34829152BAB2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FB4CDF56-BAC7-4D11-9424-2030D80F23A3}
 	EndGlobalSection
 EndGlobal

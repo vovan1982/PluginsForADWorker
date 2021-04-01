@@ -1,0 +1,636 @@
+﻿<UserControl x:Class="CreateUsersPPK.ControlPlMain"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ComboboxHelper="clr-namespace:CreateUsersPPK.EditableComboBox"
+             xmlns:Converters="clr-namespace:CreateUsersPPK.Converters"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             Background="#FFA4A4A4"
+             mc:Ignorable="d" d:DesignWidth="775" d:DesignHeight="850">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <Converters:NullToBooleanConverter x:Key="NullToBooleanConverter" />
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Label x:Name="lbVersion"
+               VerticalAlignment="Top"
+               HorizontalContentAlignment="Right"
+               Content="Версия плагина:" />
+        <Grid Margin="0,26,0,1" Background="#FFA4A4A4">
+            <ScrollViewer Margin="0,0,0,68.96">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="153" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Label Height="26"
+                           Margin="10,6,10,0"
+                           VerticalAlignment="Top"
+                           HorizontalContentAlignment="Right"
+                           Content="*Фамилия:"
+                           FontWeight="Bold"
+                           ToolTip="Обязательное поле" />
+                    <TextBox x:Name="surname"
+                             Grid.Column="1"
+                             Height="26"
+                             Margin="0,6,10,0"
+                             VerticalAlignment="Top"
+                             FontWeight="Bold"
+                             LostFocus="surname_LostFocus"
+                             MaxLength="64" />
+                    <Label Height="26"
+                           Margin="10,37,10,0"
+                           VerticalAlignment="Top"
+                           HorizontalContentAlignment="Right"
+                           Content="*Имя:"
+                           FontWeight="Bold"
+                           ToolTip="Обязательное поле" />
+                    <TextBox x:Name="name"
+                             Grid.Column="1"
+                             Height="26"
+                             Margin="0,37,10,0"
+                             VerticalAlignment="Top"
+                             FontWeight="Bold"
+                             LostFocus="name_LostFocus"
+                             MaxLength="64" />
+                    <Label Height="26"
+                        Margin="10,68,10,0"
+                        VerticalAlignment="Top"
+                        HorizontalContentAlignment="Right"
+                        Content="*Отчество:"
+                        FontWeight="Bold"
+                        ToolTip="Обязательное поле" />
+                    <TextBox x:Name="middlename"
+                        Grid.Column="1"
+                        Height="26"
+                        Margin="0,68,10,0"
+                        VerticalAlignment="Top"
+                        FontWeight="Bold"
+                        LostFocus="middlename_LostFocus"
+                        MaxLength="64" />
+                    <Label Height="26"
+                           Margin="10,99,10,0"
+                           VerticalAlignment="Top"
+                           HorizontalContentAlignment="Right"
+                           Content="*Расположение в АД:"
+                           FontWeight="Bold"
+                           ToolTip="Обязательное поле" />
+                    <TextBox x:Name="placeInAD"
+                             Grid.Column="1"
+                             Height="26"
+                             Margin="0,99,50,0"
+                             VerticalAlignment="Top"
+                             FontWeight="Bold"
+                             IsReadOnly="True"
+                             TextChanged="placeInAD_TextChanged" />
+                    <Button x:Name="btSelectOU"
+                            Grid.Column="1"
+                            Width="40"
+                            Height="26"
+                            Margin="0,99,10,0"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Top"
+                            Click="btSelectOU_Click"
+                            ToolTip="Выбрать расположение пользователя в АД">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Width="16"
+                    			Height="16"
+                    			Margin="0,0,5,0"
+                    			Source="/CreateUsersPPK;component/Resources/selectOU.ico" />
+                        </StackPanel>
+                    </Button>
+                    <Label Height="26"
+                           Margin="10,130,10,0"
+                           VerticalAlignment="Top"
+                           HorizontalContentAlignment="Right"
+                           Content="*Логин:"
+                           FontWeight="Bold"
+                           ToolTip="Обязательное поле" />
+                    <TextBox x:Name="login"
+                             Grid.Column="1"
+                             Height="26"
+                             Margin="0,130,150,0"
+                             VerticalAlignment="Top"
+                             FontWeight="Bold"
+                             TextChanged="login_TextChanged" />
+                    <Button x:Name="checkLogin"
+                            Grid.Column="1"
+                            Width="140"
+                            Height="26"
+                            Margin="0,130,10,0"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Top"
+                            Click="checkLogin_Click"
+                            Content="Проверить логин"
+                            FontWeight="Bold" />
+                    <Popup x:Name="popLogin"
+                           MaxWidth="500"
+                           AllowsTransparency="True"
+                           Placement="Bottom"
+                           PlacementTarget="{Binding ElementName=login}"
+                           PopupAnimation="Slide"
+                           StaysOpen="False" Margin="0,-25,0,25">
+                        <Border Background="Yellow"
+                    		BorderBrush="Beige"
+                    		BorderThickness="2">
+                            <TextBlock TextWrapping="Wrap"><InlineUIContainer>
+                    				<ListBox x:Name="lstpop"
+                    					Width="auto"
+                    					Height="auto"
+                    					Margin="5,5,0,0"
+                    					HorizontalAlignment="Left"
+                    					VerticalAlignment="Top"
+                    					Background="Yellow"
+                    					BorderBrush="{x:Null}" />
+                    			</InlineUIContainer></TextBlock>
+                        </Border>
+                    </Popup>
+                    <Label Height="26"
+                           Margin="10,161,10,0"
+                           VerticalAlignment="Top"
+                           HorizontalContentAlignment="Right"
+                           Content="*Имя в АД:"
+                           FontWeight="Bold"
+                           ToolTip="Обязательное поле" />
+                    <TextBox x:Name="nameInAD"
+                             Grid.Column="1"
+                             Height="26"
+                             Margin="0,161,150,0"
+                             VerticalAlignment="Top"
+                             FontWeight="Bold"
+                             IsReadOnly="True"
+                             MaxLength="64"
+                             TextChanged="nameInAD_TextChanged" />
+                    <Button x:Name="checkNameInAD"
+                            Grid.Column="1"
+                            Width="140"
+                            Height="26"
+                            Margin="0,161,10,0"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Top"
+                            Click="checkNameInAD_Click"
+                            Content="Проверить имя в АД"
+                            FontWeight="Bold" />
+                    <Popup x:Name="popNameInAD"
+                           MaxWidth="500"
+                           AllowsTransparency="True"
+                           Placement="Bottom"
+                           PlacementTarget="{Binding ElementName=nameInAD}"
+                           PopupAnimation="Slide"
+                           StaysOpen="False" Margin="0,-25,0,25">
+                        <Border Background="Yellow"
+                    		BorderBrush="Beige"
+                    		BorderThickness="2">
+                            <TextBlock TextWrapping="Wrap"><InlineUIContainer>
+                    				<ListBox x:Name="lstpopname"
+                    					Width="auto"
+                    					Height="auto"
+                    					Margin="5,5,0,0"
+                    					HorizontalAlignment="Left"
+                    					VerticalAlignment="Top"
+                    					Background="Yellow"
+                    					BorderBrush="{x:Null}" />
+                    			</InlineUIContainer></TextBlock>
+                        </Border>
+                    </Popup>
+                    <Label Height="26"
+                           Margin="10,192,10,0"
+                           VerticalAlignment="Top"
+                           HorizontalContentAlignment="Right"
+                           Content="Город:"
+                           FontWeight="Bold" />
+                    <ComboBox x:Name="city"
+                              Grid.Column="1"
+                              Height="26"
+                              Margin="0,192,150,0"
+                              VerticalAlignment="Top"
+                              FontWeight="Bold"
+                              IsEditable="True"
+                              LostFocus="city_LostFocus"
+                              SelectionChanged="city_SelectionChanged" />
+                    <Button x:Name="btAddCity"
+                            Grid.Column="1"
+                            Width="40"
+                            Height="26"
+                            Margin="0,192,105,0"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Top"
+                            Click="btAddCity_Click"
+                            ToolTip="Добавить город">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Width="16"
+                    			Height="16"
+                    			Margin="0,0,5,0"
+                    			Source="/CreateUsersPPK;component/Resources/add.ico" />
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="btEditCity"
+                            Grid.Column="1"
+                            Width="40"
+                            Height="26"
+                            Margin="0,192,60,0"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Top"
+                            Click="btEditCity_Click"
+                            ToolTip="Редактировать город">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Width="16"
+                    			Height="16"
+                    			Margin="0,0,5,0"
+                    			Source="/CreateUsersPPK;component/Resources/edit.ico" />
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="btUpdateCity"
+                            Grid.Column="1"
+                            Width="45"
+                            Height="26"
+                            Margin="0,192,10,0"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Top"
+                            Click="btUpdateCity_Click"
+                            ToolTip="Обновить список городов">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Width="16"
+                    			Height="16"
+                    			Margin="0,0,5,0"
+                    			Source="/CreateUsersPPK;component/Resources/Update.ico" />
+                        </StackPanel>
+                    </Button>
+                    <Label Height="26"
+                           Margin="10,223,10,0"
+                           VerticalAlignment="Top"
+                           HorizontalContentAlignment="Right"
+                           Content="Организация:"
+                           FontWeight="Bold" />
+                    <ComboBox x:Name="organization"
+                              Grid.Column="1"
+                              Height="26"
+                              Margin="0,223,10,0"
+                              VerticalAlignment="Top"
+                              FontWeight="Bold" />
+                    <Label Height="26"
+                           Margin="10,254,10,0"
+                           VerticalAlignment="Top"
+                           HorizontalContentAlignment="Right"
+                           Content="Адрес:"
+                           FontWeight="Bold" />
+                    <TextBox x:Name="adress"
+                             Grid.Column="1"
+                             Height="26"
+                             Margin="0,254,10,0"
+                             VerticalAlignment="Top"
+                             FontWeight="Bold"
+                             MaxLength="64" />
+                    <Label Height="26"
+                        Margin="10,285,10,0"
+                        VerticalAlignment="Top"
+                        HorizontalContentAlignment="Right"
+                        Content="Телефон внутр.:"
+                        FontWeight="Bold" />
+                    <TextBox x:Name="telephoneNumber"
+                        Grid.Column="1"
+                        Height="26"
+                        Margin="0,285,10,0"
+                        VerticalAlignment="Top"
+                        FontWeight="Bold"
+                        MaxLength="64" />
+                    <Label Height="26"
+                        Margin="10,316,10,0"
+                        VerticalAlignment="Top"
+                        HorizontalContentAlignment="Right"
+                        Content="Телефон моб.:"
+                        FontWeight="Bold" />
+                    <TextBox x:Name="mobile"
+                        Grid.Column="1"
+                        Height="26"
+                        Margin="0,316,10,0"
+                        VerticalAlignment="Top"
+                        FontWeight="Bold"
+                        MaxLength="64" />
+                    <Label Height="26"
+                           Margin="10,347,10,0"
+                           VerticalAlignment="Top"
+                           HorizontalContentAlignment="Right"
+                           Content="Должность:"
+                           FontWeight="Bold" />
+                    <ComboBox x:Name="post"
+                              Grid.Column="1"
+                              Height="26"
+                              Margin="0,347,50,0"
+                              VerticalAlignment="Top"
+                              ComboboxHelper:EditableComboBox.MaxLength="64"
+                              FontWeight="Bold"
+                              IsEditable="True" />
+                    <Button x:Name="btSavePost"
+                            Grid.Column="1"
+                            Width="40"
+                            Height="26"
+                            Margin="0,347,10,0"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Top"
+                            Click="btSavePost_Click"
+                            ToolTip="Сохранить должность в список выбора">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Width="16"
+                    			Height="16"
+                    			Margin="0,0,5,0"
+                    			Source="/CreateUsersPPK;component/Resources/save.ico" />
+                        </StackPanel>
+                    </Button>
+                    <Label Height="26"
+                           Margin="10,378,10,0"
+                           VerticalAlignment="Top"
+                           HorizontalContentAlignment="Right"
+                           Content="Отдел:"
+                           FontWeight="Bold" />
+                    <ComboBox x:Name="department"
+                              Grid.Column="1"
+                              Height="26"
+                              Margin="0,378,50,0"
+                              VerticalAlignment="Top"
+                              ComboboxHelper:EditableComboBox.MaxLength="64"
+                              FontWeight="Bold"
+                              IsEditable="True" />
+                    <Button x:Name="btSaveDepartment"
+                            Grid.Column="1"
+                            Width="40"
+                            Height="26"
+                            Margin="0,378,10,0"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Top"
+                            Click="btSaveDepartment_Click"
+                            ToolTip="Сохранить отдел в список выбора">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Width="16"
+                    			Height="16"
+                    			Margin="0,0,5,0"
+                    			Source="/CreateUsersPPK;component/Resources/save.ico" />
+                        </StackPanel>
+                    </Button>
+                    <GroupBox Grid.ColumnSpan="2"
+                              Height="198"
+                              Margin="10,409,10,0"
+                              VerticalAlignment="Top"
+                              FontWeight="Bold"
+                              Header="Настройки почтового ящика">
+                        <Grid Margin="0,0,-2,-12.96">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="153" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Label Height="25.96"
+                                   Margin="10,10,8.48,0"
+                                   VerticalAlignment="Top"
+                                   HorizontalContentAlignment="Right"
+                                   Content="*Эл. Адрес:"
+                                   FontWeight="Bold"
+                                   ToolTip="Обязательное поле" />
+                            <TextBox x:Name="mail"
+                                     Grid.Column="1"
+                                     Height="25.96"
+                                     Margin="0,10,170,0"
+                                     VerticalAlignment="Top"
+                                     TextChanged="mail_TextChanged" />
+                            <Button x:Name="btCheckMail"
+                                    Grid.Column="1"
+                                    Width="160"
+                                    Height="25.96"
+                                    Margin="0,10,10,0"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Top"
+                                    Click="btCheckMail_Click"
+                                    Content="Проверить эл.адрес"
+                                    FontWeight="Bold" />
+                            <Label Height="25.96"
+                                   Margin="10,40.96,8.48,0"
+                                   VerticalAlignment="Top"
+                                   HorizontalContentAlignment="Right"
+                                   Content="*База данных:"
+                                   FontWeight="Bold"
+                                   ToolTip="Обязательное поле" />
+                            <ComboBox x:Name="mailDataBase"
+                                      Grid.Column="1"
+                                      Height="25.96"
+                                      Margin="0,40.96,10,0"
+                                      VerticalAlignment="Top" />
+                            <CheckBox x:Name="chActiveSync"
+                                      Height="15.96"
+                                      Margin="10,71.92,8.48,0"
+                                      VerticalAlignment="Top"
+                                      Click="chActiveSync_Click"
+                                      Content="ActiveSync" IsChecked="True" />
+                            <Label x:Name="labelActiveSyncPolicy"
+                                   Height="25.96"
+                                   Margin="10,92.88,8.48,0"
+                                   VerticalAlignment="Top"
+                                   HorizontalContentAlignment="Right"
+                                   Content="Политика ActiveSync:"
+                                   FontWeight="Bold" />
+                            <ComboBox x:Name="activeSyncPolicy"
+                                      Grid.Column="1"
+                                      Height="25.96"
+                                      Margin="0,92.88,10,0"
+                                      VerticalAlignment="Top" />
+                            <CheckBox x:Name="chOWA"
+                                      Height="15.96"
+                                      Margin="10,123.84,8.48,0"
+                                      VerticalAlignment="Top"
+                                      Click="chOWA_Click"
+                                      Content="OWA" IsChecked="True" />
+                            <Label x:Name="labelOwaPolicy"
+                                   Height="25.96"
+                                   Margin="10,144.8,8.48,0"
+                                   VerticalAlignment="Top"
+                                   HorizontalContentAlignment="Right"
+                                   Content="Политика OWA:"
+                                   FontWeight="Bold" />
+                            <ComboBox x:Name="owaPolicy"
+                                      Grid.Column="1"
+                                      Height="25.96"
+                                      Margin="0,144.8,10,0"
+                                      VerticalAlignment="Top" />
+                            <Popup x:Name="popMail"
+                                   MaxWidth="500"
+                                   AllowsTransparency="True"
+                                   Placement="Bottom"
+                                   PlacementTarget="{Binding ElementName=mail}"
+                                   PopupAnimation="Slide"
+                                   StaysOpen="False">
+                                <Border Background="Yellow"
+                                        BorderBrush="Beige"
+                                        BorderThickness="2">
+                                    <TextBlock TextWrapping="Wrap"><InlineUIContainer>
+                                            <ListBox x:Name="lstpopmail"
+                                                Width="auto"
+                                                Height="auto"
+                                                Margin="5,5,0,0"
+                                                HorizontalAlignment="Left"
+                                                VerticalAlignment="Top"
+                                                Background="Yellow"
+                                                BorderBrush="{x:Null}" />
+                                        </InlineUIContainer></TextBlock>
+                                </Border>
+                            </Popup>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Grid.ColumnSpan="2"
+                              Margin="10,612,10,10"
+                              FontWeight="Bold"
+                              Header="Настройка групп">
+                        <Grid Margin="0,0,0,-10">
+                            <Label Margin="10,10,0,0"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Top"
+                                   Content="Шаблоны:" />
+                            <ComboBox x:Name="templates"
+                                      Height="26"
+                                      Margin="86,10,190,0"
+                                      VerticalAlignment="Top"
+                                      SelectionChanged="templates_SelectionChanged" />
+                            <Button x:Name="btLoadTemplate"
+                                    Width="40"
+                                    Height="26"
+                                    Margin="0,10,145,0"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Top"
+                                    Click="btLoadTemplate_Click"
+                                    FontWeight="Normal"
+                                    IsEnabled="False"
+                                    ToolTip="Загрузить шаблон">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Width="16"
+                                               Height="16"
+                                               Margin="0,0,5,0"
+                                               Source="/CreateUsersPPK;component/Resources/loadData.ico" />
+                                </StackPanel>
+                            </Button>
+                            <Button x:Name="btAddTemplate"
+                                    Width="40"
+                                    Height="26"
+                                    Margin="0,10,100,0"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Top"
+                                    Click="btAddTemplate_Click"
+                                    ToolTip="Создать шаблон">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Width="16"
+                            			Height="16"
+                            			Margin="0,0,5,0"
+                            			Source="Resources/add.ico" />
+                                </StackPanel>
+                            </Button>
+                            <Button x:Name="btEditTemplate"
+                                    Width="40"
+                                    Height="26"
+                                    Margin="0,10,55,0"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Top"
+                                    Click="btEditTemplate_Click"
+                                    ToolTip="Редактировать шаблон">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Width="16"
+                            			Height="16"
+                            			Margin="0,0,5,0"
+                            			Source="Resources/edit.ico" />
+                                </StackPanel>
+                            </Button>
+                            <Button x:Name="btUpdateTemplate"
+                                    Width="40"
+                                    Height="26"
+                                    Margin="0,10,10,0"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Top"
+                                    Click="btUpdateTemplate_Click"
+                                    ToolTip="Обновить список шаблонов">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Width="16"
+                            			Height="16"
+                            			Margin="0,0,5,0"
+                            			Source="Resources/Update.ico" />
+                                </StackPanel>
+                            </Button>
+                            <Button x:Name="btAddGroups"
+                                    Width="130"
+                                    Margin="0,40.96,145,0"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Top"
+                                    Click="btAddGroups_Click"
+                                    FontWeight="Normal">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Width="16"
+                                               Height="16"
+                                               Margin="0,0,5,0"
+                                               Source="/CreateUsersPPK;component/Resources/add_in_group.ico" />
+                                    <TextBlock Text="Добавить группы" />
+                                </StackPanel>
+                            </Button>
+                            <Button x:Name="btDeleteGroups"
+                                    Width="130"
+                                    Margin="0,40.96,10,0"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Top"
+                                    Click="btDeleteGroups_Click"
+                                    FontWeight="Normal"
+                                    IsEnabled="{Binding SelectedItem, Converter={StaticResource NullToBooleanConverter}, ElementName=goupListToAdd, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Width="16"
+                                               Height="16"
+                                               Margin="0,0,5,0"
+                                               Source="/CreateUsersPPK;component/Resources/remove_from_group.ico" />
+                                    <TextBlock Text="Удалить группы" />
+                                </StackPanel>
+                            </Button>
+                            <ListView x:Name="goupListToAdd" Margin="10,67.92,10,10">
+                                <ListView.Resources>
+                                    <Style TargetType="{x:Type GridViewColumnHeader}">
+                                        <Setter Property="Visibility" Value="Collapsed" />
+                                    </Style>
+                                </ListView.Resources>
+                                <ListView.View>
+                                    <GridView x:Name="goupListToAddGridView">
+                                        <GridViewColumn />
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </Grid>
+                    </GroupBox>
+                </Grid>
+            </ScrollViewer>
+            <CheckBox x:Name="chCopySettings"
+                      Margin="10,0,0,45"
+                      HorizontalAlignment="Left"
+                      VerticalAlignment="Bottom"
+                      Content="Копировать настройки"
+                      IsChecked="True" />
+            <Button x:Name="btCreateUser"
+                    Width="190"
+                    Margin="158.187,0,0,42"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Bottom"
+                    Click="btCreateUser_Click"
+                    Content="Создать учетную запись"
+                    FontWeight="Bold" />
+            <Button x:Name="btReport"
+                    Width="100"
+                    Margin="353.187,0,0,42"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Bottom"
+                    Click="btReport_Click"
+                    Content="Отчёт" />
+            <Button x:Name="btReloadConfig"
+                    Width="190"
+                    Margin="458.187,0,0,42"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Bottom"
+                    Click="btReloadConfig_Click"
+                    Content="Перечитать конфиг. файл" />
+            <StatusBar Height="37" VerticalAlignment="Bottom">
+                <Label x:Name="statusText" Content="" />
+            </StatusBar>
+        </Grid>
+    </Grid>
+</UserControl>

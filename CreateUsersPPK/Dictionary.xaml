@@ -1,0 +1,8 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <!--<ResourceDictionary Source="pack://application:,,,/CreateUsersPPK;component/UISearchTextBox/Themes/Generic.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CreateUsersPPK;component/UISearchTextBox/Themes/ListBoxEx.xaml" />-->
+        <ResourceDictionary Source="pack://application:,,,/CreateUsersPPK;component/UIWatermarkedTextBox/Themes/Skin.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/CreateUsersPPK;component/DataProvider/Templates.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>

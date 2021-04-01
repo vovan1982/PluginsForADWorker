@@ -1,0 +1,175 @@
+﻿<Window x:Class="CreateUsersPPK.DialogWindows.SelectGroups"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Converters="clr-namespace:CreateUsersPPK.Converters"
+        xmlns:Providers="clr-namespace:CreateUsersPPK.DataProvider"
+        xmlns:UIWatermarkedTextBox="clr-namespace:CreateUsersPPK.UIWatermarkedTextBox"
+        Title="Выбор групп"
+        Width="704"
+        Height="682"
+        Background="#FFA4A4A4"
+        KeyDown="Window_KeyDown"
+        WindowStartupLocation="CenterOwner">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/CreateUsersPPK;component/Dictionary.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <ObjectDataProvider x:Key="AsyncDataSource"
+                                IsAsynchronous="True"
+                                MethodName="GetGroupItems"
+                                ObjectType="Providers:AsyncDataProvider" />
+            <Converters:NullToBooleanConverter x:Key="NullToBooleanConverter" />
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Button x:Name="btSelectedGroups"
+                Width="100"
+                Height="22"
+                Margin="0,0,115,8.04"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Click="btSelectedGroups_Click"
+                IsEnabled="False"
+                RenderTransformOrigin="0.5,0.456">
+            <Button.Content>
+                <StackPanel Orientation="Horizontal">
+                    <Image Width="16"
+                           Height="16"
+                           Margin="0,0,5,0"
+                           Source="/CreateUsersPPK;component/Resources/add.ico" />
+                    <TextBlock Text="Выбрать" />
+                </StackPanel>
+            </Button.Content>
+        </Button>
+        <Button Width="100"
+                Height="22"
+                Margin="0,0,10,8.04"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Click="Button_Click">
+            <Button.Content>
+                <StackPanel Orientation="Horizontal">
+                    <Image Width="16"
+                           Height="16"
+                           Margin="0,0,5,0"
+                           Source="/CreateUsersPPK;component/Resources/cancel.ico" />
+                    <TextBlock Text="Отмена" />
+                </StackPanel>
+            </Button.Content>
+        </Button>
+        <GroupBox x:Name="groupBoxSelectGroup"
+                  Margin="10,10,10,35.04"
+                  BorderBrush="Black"
+                  Header="Выбор групп для добавления в них пользователя">
+            <Grid Margin="0,0,-2,-12.96">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="316*" />
+                    <ColumnDefinition Width="3*" />
+                    <ColumnDefinition Width="347*" />
+                </Grid.ColumnDefinitions>
+                <UIWatermarkedTextBox:WatermarkedTextBox x:Name="filterGroupsForSelected"
+                                                         Height="24"
+                                                         Margin="10,10,2,0"
+                                                         VerticalAlignment="Top"
+                                                         TextChanged="filterGroupsForSelected_TextChanged"
+                                                         WatermarkText="Фильтр групп" />
+                <ListView x:Name="groupsForSelected"
+                          Margin="10,39,2,37"
+                          ItemsSource="{Binding Source={StaticResource AsyncDataSource},
+                                                IsAsync=True}">
+                    <ListView.Style>
+                        <Style TargetType="{x:Type ListView}">
+                            <Style.Triggers>
+                                <Trigger Property="ItemsSource" Value="{x:Null}">
+                                    <Setter Property="Template" Value="{StaticResource WaitControlTemplate}" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListView.Style>
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <EventSetter Event="MouseDoubleClick" Handler="groupsForSelectedItem_MouseDoubleClick" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Имя группы до Win 2000" />
+                            <GridViewColumn DisplayMemberBinding="{Binding Description}" Header="Описание" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <Button x:Name="btAddSelectedGroups"
+                        Width="116"
+                        Height="22"
+                        Margin="0,0,6,10"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Bottom"
+                        Click="btAddSelectedGroups_Click"
+                        FontWeight="Bold"
+                        IsEnabled="{Binding ElementName=groupsForSelected,
+                                            Path=SelectedItem,
+                                            Mode=OneWay,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            Converter={StaticResource NullToBooleanConverter}}">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Width="16"
+                                   Height="16"
+                                   Source="/CreateUsersPPK;component/Resources/move_right.ico" />
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+                <GridSplitter Grid.Column="1"
+                              Margin="0,10"
+                              HorizontalAlignment="Stretch" />
+                <ListView x:Name="selectedGroups"
+                          Grid.Column="2"
+                          Margin="3,39,10,37">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <EventSetter Event="MouseDoubleClick" Handler="selectedGroupsItem_MouseDoubleClick" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Имя группы до Win 2000" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <Button x:Name="btDeleteSelectedGroups"
+                        Grid.Column="2"
+                        Width="120"
+                        Height="22"
+                        Margin="6,0,0,10"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Bottom"
+                        Click="btDeleteSelectedGroups_Click"
+                        FontWeight="Bold"
+                        IsEnabled="{Binding ElementName=selectedGroups,
+                                            Path=SelectedItem,
+                                            Mode=OneWay,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            Converter={StaticResource NullToBooleanConverter}}">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Width="16"
+                                   Height="16"
+                                   Source="/CreateUsersPPK;component/Resources/move_left.ico" />
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+            </Grid>
+        </GroupBox>
+
+    </Grid>
+</Window>
